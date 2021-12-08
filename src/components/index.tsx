@@ -6,3 +6,4 @@ export * from "components/GamePage/GamePage";
 export * from "components/GameInfo/GameInfo";
 export * from "components/ParentPlatforms/ParentPlatforms";
 export * from "components/GameDescription/GameDescription";
+export * from "components/Metacritic/Metacritic";
