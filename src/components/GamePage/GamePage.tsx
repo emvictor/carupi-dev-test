@@ -23,7 +23,7 @@ export const GamePage = () => {
   console.log(gameInfo);
 
   return (
-    <Flex overflowY="scroll" flexDirection="column" {...GamePage_Wrapper}>
+    <Flex flexDirection="column" {...GamePage_Wrapper}>
       {gameInfo !== undefined ? (
         <GameInfo {...gameInfo} />
       ) : (

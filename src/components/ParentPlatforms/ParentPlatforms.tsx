@@ -6,7 +6,7 @@ import { ParentPlatformsProps } from "interfaces/parentPlatformsProps";
 
 export const ParentPlatforms = ({ ...props }) => {
   return (
-    <Flex width="100%" justifyContent="flex-start" marginTop="1rem">
+    <Flex width="100%" marginTop="1rem">
       {props.parent_platforms.map((item: ParentPlatformsProps) => {
         return (
           <PlatformIcon key={item.platform.id} platform={item.platform.name} />
