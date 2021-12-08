@@ -1,39 +1,17 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 
-import { getGames } from "services/getGames";
-import { Header, Home } from "components";
-import { getGamesByID } from "services/getGamesByID";
+import { Header, Home, GamePage } from "components";
 
 function App() {
-  const [games, setGames] = useState([]);
-  const [gameID, setGameID] = useState(undefined);
-  const [gameInfo, setGameInfo] = useState(undefined);
-
-  console.log({ gameID });
-
-  useEffect(() => {
-    getGames().then((data) => {
-      setGames(data.results);
-    });
-    if (gameID !== undefined) {
-      getGamesByID(gameID).then((data) => {
-        setGameInfo(data.results);
-      });
-    }
-  }, [gameID]);
-
   return (
-    <Flex flexDirection="column" backgroundColor="#000000" height="100%">
+    <Flex flexDirection="column" background="#000000" height="100%">
       <Header />
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<Home games={games} setGameID={setGameID} />}
-          />
-          <Route path="/game" element={<p>Batata</p>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/game/:id" element={<GamePage />} />
         </Routes>
       </Router>
     </Flex>
