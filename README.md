@@ -1,6 +1,32 @@
-# Getting Started with Create React App
+# RAWG Games List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A SPA application that has two screens:
+
+### Home
+Shows a list of 20 games taken from https://api.rawg.io/games endpoint.
+
+### Game Page
+Shows detailed information about a selected game.
+
+### Goals to the future
+In future versions this will have a searchbar and some filters to refine better your search. It will include unity tests.
+
+## BE AWARE
+At first run, you will need to configure the endpoint `REACT_APP_API_URL=https://api.rawg.io/api/` in a `.env` file to be created in application's `root` folder.
+Remember to get a private API KEY on http://rawg.io and also add this at `REACT_APP_API_KEY`.
+
+After this step, run `yarn install` to get the dependencies installed and you're ready to go!
+
+## Libraries used
+
+### `axios`
+Handle HTTP requests to API
+
+### `@chakra-ui/react`
+Component library to speed up the development proccess
+
+### `react-router-dom`
+For dynamic routing
 
 ## Available Scripts
 
@@ -13,11 +39,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
