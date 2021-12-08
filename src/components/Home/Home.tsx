@@ -1,15 +1,22 @@
 import React from "react";
-import { Grid, Box } from "@chakra-ui/react";
-import { Card } from "components";
+import { Link } from "react-router-dom";
+
+import { Grid, Box, Spinner, Flex } from "@chakra-ui/react";
+
 import { GameProps } from "interfaces/gameProps";
+import { getGames } from "services/getGames";
+
+import { Card } from "components";
 import { Home_Wrapper } from "./Home.styles";
 
-export const Home = ({ ...props }) => {
-  const handleClick = (event: React.MouseEvent<HTMLElement>, id: number) => {
-    event.preventDefault();
-    props.setGameID(id);
-    window.location.assign(`${window.location}game`);
-  };
+export const Home = () => {
+  const [games, setGames] = React.useState<[]>();
+
+  React.useEffect(() => {
+    getGames().then((data) => {
+      setGames(data.results);
+    });
+  }, []);
 
   return (
     <Grid
@@ -21,20 +28,28 @@ export const Home = ({ ...props }) => {
       gap={6}
       {...Home_Wrapper}
     >
-      {props.games.map((game: GameProps) => {
-        return (
-          <Box
-            key={game.id}
-            cursor="pointer"
-            onClick={(event: React.MouseEvent<HTMLElement>) =>
-              handleClick(event, game.id)
-            }
-            className={game.name}
-          >
-            <Card {...game} />
-          </Box>
-        );
-      })}
+      {games !== undefined ? (
+        <>
+          {games.map((game: GameProps) => {
+            return (
+              <Box key={game.id} cursor="pointer" className={game.name}>
+                <Link to={`/game/${game.id}`}>
+                  <Card {...game} />
+                </Link>
+              </Box>
+            );
+          })}
+        </>
+      ) : (
+        <Flex
+          height="100vh"
+          width="100vw"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Spinner size="xl" color="white" />
+        </Flex>
+      )}
     </Grid>
   );
 };
